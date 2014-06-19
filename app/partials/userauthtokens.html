@@ -1,0 +1,17 @@
+<div class="panel panel-default">
+    <div class="panel-heading">Security tokens</div>
+    <table class="table table-condensed">
+        <tr>
+            <th>Updated</th>
+            <th>IP Address</th>
+            <th>User-Agent</th>
+            <th>Delete</th>
+        </tr>
+        <tr ng-repeat="t in authtokens | orderBy:updatedSec:reverse">
+            <td>{{t.updatedDate}}</td>
+            <td>{{t.ip}}</td>
+            <td>{{t.ua}}</td>
+            <td><button ng-click="removeToken(t)" class="btn btn-xs btn-danger">Delete</button></td>
+        </tr>
+    </table>
+</div>

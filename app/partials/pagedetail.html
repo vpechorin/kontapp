@@ -1,0 +1,215 @@
+<div class="panel panel-success">
+    <div class="panel-heading"><strong>Edit page</strong>
+        <div class="btn-group pull-right">
+            <button type="button" class="btn btn-success btn-sm" role="button" ng-click="createSubPage(page)">Add a sub-page</button>
+            <button type="button" class="btn btn-default btn-sm" role="button" ng-click="createCopy(page)">Copy</button>
+            <button type="button" class="btn btn-danger btn-sm" role="button" ng-click="deletePage(page)" ng-confirm-click="You are about to delete this page! Are you SURE?">Delete</button>
+        </div>
+    </div>
+    <div class="panel-body">
+        <tabset>
+            <tab heading="Main">
+                <form class="form-horizontal form-product" name="form" role="form" novalidate>
+                    <div class="form-group">
+                        <label class="col-xs-2 col-sm-2 control-label" for="pageName">Page name</label>
+
+                        <div class="col-xs-10 col-sm-10">
+                            <div class="input-group">
+                                <input type="text" class="form-control"
+                                       ng-readonly="page.autoName"
+                                       ng-model="page.name"
+                                       name="pageName"
+                                       ng-pattern="/^[a-zA-Z0-9]+$/"
+                                       ensure-unique="pageName"
+                                       required>
+                                <span class="input-group-addon">
+                                    <input type="checkbox" ng-model="page.autoName"> Auto
+                                </span>
+                                <span class="input-group-addon">
+                                    <input type="checkbox" ng-model="page.publicPage" name="active"> Public
+                                </span>
+                                <span class="input-group-addon">
+                                    <input type="checkbox" ng-model="page.placeholder" name="active"> Placeholder
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-xs-2 col-sm-2 control-label" for="pageTitle">Title</label>
+
+                        <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+                            <div class="input-group">
+                                <input type="text" class="form-control" ng-model="page.title" name="pageTitle" required>
+                                <span class="input-group-addon">
+                                    <input type="checkbox" ng-model="page.hideTitle"> Hide
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <div class="pull-right">
+                                <button ng-click="reset()" ng-disabled="isUnchanged(page)" class="btn btn-default">RESET</button>
+                                <button ng-click="update(page)" class="btn btn-primary"
+                                        ng-disabled="form.$invalid || isUnchanged(page) || (form.pageName.unique == false)">SAVE
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-xs-12">
+
+                            <textarea ng-model="page.body" ckeditor="editorOptions" rows="12"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <label for="pageDesc">Meta description</label>
+                            <textarea class="form-control" ng-model="page.description" name="pageDesc" rows="3"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <label for="pageTags">Tags</label>
+                            <input type="text" class="form-control" ng-model="page.tags" name="pageTags">
+                        </div>
+                    </div>
+
+                </form>
+
+                <div class="panel panel-info">
+                    <div class="panel-heading">Page properties</div>
+                    <div class="panel-body">
+                        <div ng-repeat="prop in page.properties">
+                            <div class="row propRow">
+                                <div class="col-xs-2 propName">
+                                    <input type="text" class="form-control" ng-model="prop.name" ng-pattern="/^[a-zA-Z0-9]+$/">
+                                </div>
+                                <div class="col-xs-8">
+                                    <textarea class="form-control" rows="3" ng-model="prop.content"></textarea>
+                                </div>
+                                <div class="col-xs-2">
+                                    <button type="button" ng-click="saveProp(prop)" class="btn btn-success btn-sm">Save</button>
+                                    <button type="button" ng-click="deleteProp(prop)" class="btn btn-danger btn-sm" ng-confirm-click="You are about to delete this property. Are you SURE?">Remove</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <strong>Add a new property</strong>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-2 col-sm-2">
+                                <input type="text" class="form-control" name="newPropName" ng-model="newPropName" ng-pattern="/^[a-zA-Z0-9]+$/" placeholder="Property name">
+                            </div>
+                            <div class="col-xs-8 col-sm-8">
+                                <textarea class="form-control" name="newPropContent" ng-model="newPropContent" rows="3"></textarea>
+                            </div>
+                            <div class="col-xs-2 col-sm-2">
+                                <button type="button" ng-click="addProp(this)" class="btn btn-primary btn-sm" ng-disabled="newPropName == null || newPropContent == null"> Add </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </tab>
+
+            <tab heading="Images">
+                <div class="panel panel-info">
+                    <div class="panel-heading">Upload images</div>
+                    <div class="panel-body">
+                        <div>
+                            <input class="btn btn-default" type="file" ng-file-select="onImageSelect($files)"
+                                   multiple>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+
+                    <div ng-repeat="img in images" class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                        <div class="thumbnail">
+                            <a ng-href="{{imageUrl(img)}}" target="_blank">
+                                <img ng-src="{{imageUrl(img.thumb)}}" class="img-thumbnail">
+                            </a>
+
+                            <div class="caption">
+                                <p>
+                                    <span ng-show="img.mainImage"><span class="glyphicon glyphicon-star"></span></span>
+                                    <small>{{img.name}}</small>
+                                    <small>{{img.hfileSize}} [{{img.width}}x{{img.height}}]</small>
+                                <div class="btn-group btn-group-xs">
+                                    <button ng-hide="img.mainImage" type="button" class="btn btn-default btn-xs" ng-click="imgSetMain(img)" title="Mark image as the MAIN image"><span class="glyphicon glyphicon-star-empty"></span></button>
+                                    <button type="button" class="btn btn-default" ng-click="imgMoveUp(img)"><span
+                                            class="glyphicon glyphicon-arrow-left"></span>
+                                    </button>
+                                    <button type="button" class="btn btn-default" ng-click="imgMoveDown(img)"><span
+                                            class="glyphicon glyphicon-arrow-right"></span></button>
+                                    <button type="button" class="btn btn-danger"><span
+                                            class="glyphicon glyphicon-trash" ng-click="removeImage(img)"></span></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </tab>
+
+            <tab heading="Files">
+
+                <div class="panel panel-info">
+                    <div class="panel-heading">Upload files</div>
+                    <div class="panel-body">
+                        <div>
+                            <input class="btn btn-default" type="file" ng-file-select="onFileSelect($files)"
+                                   multiple>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+
+                    <div class="cols-xs-12">
+                        <div class="table-responsive ">
+                        <table class="table table-condensed table-striped">
+                            <tr>
+                                <th>Name</th>
+                                <th>Content Type</th>
+                                <th>Size</th>
+                                <th>Operations</th>
+                            </tr>
+                            <tr ng-repeat="df in docfiles">
+                                <td><a ng-href="{{fileUrl(df)}}" target="_blank">{{df.name}}</a></td>
+                                <td>{{df.contentType}}</td>
+                                <td>{{df.hfileSize}}</td>
+                                <td>
+                                    <div class="btn-group btn-group-xs">
+                                        <button type="button" class="btn btn-default" ng-click="fileMoveUp(df)"><span
+                                                class="glyphicon glyphicon-arrow-up"></span>
+                                        </button>
+                                        <button type="button" class="btn btn-default" ng-click="fileMoveDown(df)"><span
+                                                class="glyphicon glyphicon-arrow-down"></span></button>
+                                        <button type="button" class="btn btn-danger"><span
+                                                class="glyphicon glyphicon-trash" ng-click="removeFile(df)"></span></button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                        </div>
+                    </div>
+
+                </div>
+
+            </tab>
+        </tabset>
+
+    </div>
+</div>
+
+
+

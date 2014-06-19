@@ -1,0 +1,77 @@
+<div class="panel panel-success">
+    <div class="panel-heading">Edit: <strong>{{site.domain}}</strong>
+        <div class="btn-group pull-right">
+            <a class="btn btn-danger btn-sm" role="button" ng-click="deleteSite(site)" ng-confirm-click="You are about to delete the WHOLE site! Are you SURE?">Delete</a>
+        </div>
+    </div>
+    <div class="panel-body">
+        <form class="form-horizontal" name="form" role="form" novalidate>
+            <div class="form-group">
+                <label class="col-xs-2 col-sm-2 control-label" for="siteName">Name</label>
+
+                <div class="col-xs-10 col-sm-6 col-md-4 col-lg-3">
+                    <input type="text" class="form-control" ng-model="site.name" name="siteName" ng-pattern="/^[a-zA-Z0-9]+$/" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-xs-2 col-sm-2 control-label" for="siteTitle">Title</label>
+
+                <div class="col-xs-10 col-sm-6 col-md-4 col-lg-3">
+                    <input type="text" class="form-control" ng-model="site.title" name="siteTitle" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-xs-2 col-sm-2 control-label" for="siteDomain">Domain</label>
+
+                <div class="col-xs-10 col-sm-6 col-md-4 col-lg-3">
+                    <input type="text" class="form-control" ng-model="site.domain" name="siteDomain" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-xs-10 col-sm-10 col-md-10 col-lg-10">
+                    <button ng-click="reset()" ng-disabled="isUnchanged(site)" class="btn btn-sm btn-default">RESET</button>
+                    <button ng-click="update(site)" class="btn btn-primary btn-sm"
+                            ng-disabled="form.$invalid || isUnchanged(site)">SAVE
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="panel panel-info">
+    <div class="panel-heading">Site properties</div>
+    <div class="panel-body">
+        <div ng-repeat="prop in site.properties">
+            <div class="row propRow">
+                <div class="col-xs-2 propName">
+                    <input type="text" class="form-control" ng-model="prop.name" ng-pattern="/^[a-zA-Z0-9]+$/">
+                </div>
+                <div class="col-xs-8">
+                    <textarea class="form-control" rows="3" ng-model="prop.content"></textarea>
+                </div>
+                <div class="col-xs-2">
+                    <button type="button" ng-click="saveProp(prop)" class="btn btn-success btn-sm">Save</button>
+                    <button type="button" ng-click="deleteProp(prop)" class="btn btn-danger btn-sm" ng-confirm-click="You are about to delete this property. Are you SURE?">Remove</button>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <strong>Add a new property</strong>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-2 col-sm-2">
+                <input type="text" class="form-control" name="newPropName" ng-model="newPropName" ng-pattern="/^[a-zA-Z0-9]+$/" placeholder="Property name">
+            </div>
+            <div class="col-xs-8 col-sm-8">
+                <textarea class="form-control" name="newPropContent" ng-model="newPropContent" rows="3"></textarea>
+            </div>
+            <div class="col-xs-2 col-sm-2">
+                <button type="button" ng-click="addProp(prop)" class="btn btn-primary btn-sm" ng-disabled="newPropName == null || newPropContent == null"> Add </button>
+            </div>
+        </div>
+    </div>
+</div>
+

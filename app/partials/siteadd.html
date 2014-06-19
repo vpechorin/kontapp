@@ -1,0 +1,35 @@
+<div class="panel panel-success">
+    <div class="panel-heading">Add  a new site: <strong>{{site.domain}}</strong></div>
+    <div class="panel-body">
+        <form class="form-horizontal" name="form" role="form" novalidate>
+            <div class="form-group">
+                <label class="col-xs-2 col-sm-2 control-label" for="siteName">Name</label>
+
+                <div class="col-xs-10 col-sm-6 col-md-4 col-lg-3">
+                    <input type="text" class="form-control" ng-model="site.name" name="siteName" ng-pattern="/^[a-zA-Z0-9]+$/" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-xs-2 col-sm-2 control-label" for="siteTitle">Title</label>
+
+                <div class="col-xs-10 col-sm-6 col-md-4 col-lg-3">
+                    <input type="text" class="form-control" ng-model="site.title" name="siteTitle" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-xs-2 col-sm-2 control-label" for="siteDomain">Domain</label>
+
+                <div class="col-xs-10 col-sm-6 col-md-4 col-lg-3">
+                    <input type="text" class="form-control" ng-model="site.domain" name="siteDomain" ng-pattern="/^[a-zA-Z0-9\.]+$/" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-xs-10 col-sm-10 col-md-10 col-lg-10">
+                    <button ng-click="createNew(site)" class="btn btn-primary"
+                            ng-disabled="form.$invalid">Create
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

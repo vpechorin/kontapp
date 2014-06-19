@@ -1,0 +1,28 @@
+<div class="row">
+    <div class="col-md-12">
+        <h4>Site structure
+            <a href="" class="btn btn-primary pull-right" ng-click="newRootPage()"><span class="glyphicon glyphicon-plus"></span> Add Page</a>
+            <a href="" class="btn btn-default pull-right" ng-click="collapseAll()">Collapse all</a>
+            <a href="" class="btn btn-default pull-right" ng-click="expandAll()">Expand all</a>
+        </h4>
+        <script type="text/ng-template" id="nodes_renderer.html">
+            <div ui-tree-handle class="tree-node tree-node-content">
+                <a class="btn btn-success btn-xs" ng-if="node.nodes && node.nodes.length > 0" data-nodrag ng-click="toggle(this)">
+                    <span class="glyphicon" ng-class="{'glyphicon-chevron-right': collapsed, 'glyphicon-chevron-down': !collapsed}"></span></a>
+                <a ng-click="editPage(this)">{{node.title}}</a>
+                <a class="pull-right btn btn-danger btn-xs" data-nodrag ng-click="removePage(this)" ng-confirm-click="The page will be removed. Are you SURE?"><span class="glyphicon glyphicon-remove"></span></a>
+                <a class="pull-right btn btn-primary btn-xs" data-nodrag ng-click="newSubItem(this)" style="margin-right: 8px;"><span class="glyphicon glyphicon-plus"></span></a>
+            </div>
+            <ol ui-tree-nodes="" ng-model="node.nodes" ng-class="{hidden: collapsed}">
+                <li ng-repeat="node in node.nodes" ui-tree-node ng-include="'nodes_renderer.html'">
+                </li>
+            </ol>
+        </script>
+
+        <div ui-tree="treeOptions" data-drag-enabled="tree.enabled" data-drag-delay="100" id="tree-root">
+            <ol ui-tree-nodes="" ng-model="data">
+                <li ng-repeat="node in data" ui-tree-node ng-include="'nodes_renderer.html'"></li>
+            </ol>
+        </div>
+    </div>
+</div>

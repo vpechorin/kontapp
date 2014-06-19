@@ -1,0 +1,63 @@
+<div class="panel panel-success">
+    <div class="panel-heading">Add user</div>
+    <div class="panel-body">
+        <form class="form-horizontal" name="form" role="form" novalidate>
+            <div class="form-group">
+                <label class="col-xs-2 col-sm-2 control-label" for="sName">Name</label>
+                <div class="col-xs-10 col-sm-7 col-md-5 col-lg-4">
+                    <input type="text" class="form-control" ng-model="user.name" name="sName" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-xs-2 col-sm-2 control-label" for="email">Email</label>
+                <div class="col-xs-10 col-sm-7 col-md-5 col-lg-4">
+                    <input type="email" class="form-control" ng-model="user.email" name="email" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-xs-2 col-sm-2 control-label" for="password">Password</label>
+                <div class="col-xs-10 col-sm-6 col-md-4 col-lg-3">
+                    <input type="password"
+                           password-validate
+                           class="form-control"
+                           ng-model="user.password"
+                           ng-required="true"
+                           name="password">
+                    <div class="help-block" ng-show="pwdValidLength == false || pwdHasLetter == false || pwdHasNumber == false">
+                        <span class="text-danger">Password must meet the following requirements:</span>
+                        <ul>
+                            <li ng-hide="pwdHasLetter">At least <strong>one letter</strong></li>
+                            <li ng-hide="pwdHasNumber">At least <strong>one number</strong></li>
+                            <li ng-hide="pwdValidLength">At least <strong>8 characters long</strong></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-xs-2 col-sm-2 control-label" for="inlineCheckbox1">Roles</label>
+                <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+                    <label class="checkbox-inline">
+                        <input type="checkbox" id="inlineCheckbox1" ng-model="user.roleMap.admin" value="1"> Admin
+                    </label>
+                    <label class="checkbox-inline">
+                        <input type="checkbox" id="inlineCheckbox2" ng-model="user.roleMap.editor" value="1"> Editor
+                    </label>
+                    <label class="checkbox-inline">
+                        <input type="checkbox" id="inlineCheckbox3" ng-model="user.roleMap.user" value="1"> User
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-xs-10 col-sm-10 col-md-10 col-lg-10">
+                    <button ng-click="reset()" ng-disabled="isUnchanged(user)" class="btn btn-default">RESET</button>
+                    <button ng-click="update(user)" class="btn btn-primary"
+                            ng-disabled="form.$invalid || isUnchanged(user)">SAVE
+                    </button>
+                    <div>
+                        <span ng-show="responseErrorShow"><p class="text-danger">{{responseError}}</span>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
