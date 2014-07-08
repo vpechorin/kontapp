@@ -26,10 +26,13 @@
                                     <input type="checkbox" ng-model="page.autoName"> Auto
                                 </span>
                                 <span class="input-group-addon">
-                                    <input type="checkbox" ng-model="page.publicPage" name="active"> Public
+                                    <input type="checkbox" ng-model="page.publicPage" name="public"> Public
                                 </span>
                                 <span class="input-group-addon">
-                                    <input type="checkbox" ng-model="page.placeholder" name="active"> Placeholder
+                                    <input type="checkbox" ng-model="page.placeholder" name="placeholder"> Placeholder
+                                </span>
+                                <span class="input-group-addon">
+                                    <input type="checkbox" ng-model="page.richText" name="richText"> Rich text
                                 </span>
                             </div>
                         </div>
@@ -60,9 +63,11 @@
                     </div>
 
                     <div class="form-group">
-                        <div class="col-xs-12">
-
+                        <div ng-if="page.richText == true" class="col-xs-12">
                             <textarea ng-model="page.body" ckeditor="editorOptions" rows="12"></textarea>
+                        </div>
+                        <div ng-if="page.richText == false" class="col-xs-12">
+                            <textarea ng-model="page.body" class="form-control" rows="8"></textarea>
                         </div>
                     </div>
 

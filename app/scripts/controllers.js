@@ -3,7 +3,7 @@
 /* Controllers */
 
 angular.module('kontApp.controllers', [])
-    .controller('LoginController', ['$scope', '$rootScope', '$location', '$cookieStore', 'UserService',
+.controller('LoginController', ['$scope', '$rootScope', '$location', '$cookieStore', 'UserService',
         function ($scope, $rootScope, $location, $cookieStore, UserService) {
             $scope.rememberMe = false;
             $scope.login = function () {
@@ -61,7 +61,7 @@ angular.module('kontApp.controllers', [])
         $scope.editPage = function (scope) {
             var nodeData = scope.$modelValue;
             $state.go("^.pages", {siteId: $stateParams.siteId, pageId: nodeData.id});
-        }
+        };
 
         $scope.removePage = function (scope) {
             var nodeData = scope.$modelValue;
@@ -414,7 +414,11 @@ angular.module('kontApp.controllers', [])
                     })
                         //.error(...)
                         //.then(success, error, progress);
-                        .xhr(function(xhr){xhr.upload.addEventListener('abort', function() {console.log('abort complete')}, false)});
+                        .xhr(
+                        		function (xhr) {
+                        			xhr.upload.addEventListener('abort', function() {
+                        				console.log('abort complete');
+                        			}, false)});
                 }
                 /* alternative way of uploading, send the file binary with the file's content-type.
                  Could be used to upload files to CouchDB, imgur, etc... html5 FileReader is needed.
@@ -475,8 +479,8 @@ angular.module('kontApp.controllers', [])
 
             $scope.saveProp = function (prop) {
                 Restangular.one('pages', $stateParams.pageId).one('properties', prop.id).customPUT(prop).then(function () {
-                        console.log("Success - property saved");
-                        $scope.master.properties = angular.copy(page.properties);
+                      console.log("Success - property saved");
+                      $scope.master.properties = angular.copy(page.properties);
                     }, function (response) {
                         $scope.responseError = "Error saving property: " + response.statusText;
                         $scope.responseErrorShow = true;
@@ -582,7 +586,7 @@ angular.module('kontApp.controllers', [])
         $scope.updateRoles = function () {
             if ($scope.user.roleMap) {
                 var roles = [];
-                var role;
+                var role = "";
                 for (role in $scope.user.roleMap) {
                     if ($scope.user.roleMap[role]) roles.push(role);
                 }
@@ -642,7 +646,7 @@ angular.module('kontApp.controllers', [])
         console.log("stateParams: " + $stateParams);
         Restangular.one('users', $stateParams.userId).one('credentials', $stateParams.credId).customGET("chpassword").then(function (formdata) {
             $scope.passwordData = formdata;
-            $scope.master = angular.copy(passwordData);
+            $scope.master = angular.copy($scope.passwordData);
         });
 
         $scope.responseError = "";
@@ -697,6 +701,9 @@ angular.module('kontApp.controllers', [])
             var idx = $scope.authtokens.indexOf(token);
             $scope.authtokens.splice(idx, 1);
         };
+    }])
+    .controller('SitemapController', ['$scope', '$state', '$stateParams', 'Restangular', function ($scope, $state, $stateParams, Restangular) {
+        Restangular.all('sitemaps').all($stateParams.actionName).doPOST([{}]);
     }])
     .controller('SideNavController', ['$scope', function ($scope) {
 

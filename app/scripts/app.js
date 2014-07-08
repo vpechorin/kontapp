@@ -85,8 +85,12 @@ angular.module('kontApp', [
                     url: '/authtokens',
                     templateUrl: 'partials/userauthtokens.html',
                     controller: 'UserAuthTokenController'
+                })
+                .state('sitemap', {
+                    url: '/sitemap/{actionName}',
+                    template: 'OK',
+                    controller: 'SitemapController'
                 });
-
 
             /* Register error provider that shows message on failed requests or redirects to login page on
             * unauthenticated requests */
