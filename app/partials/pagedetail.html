@@ -124,13 +124,13 @@
                 </div>
             </tab>
 
-            <tab heading="Images">
+            <tab heading="Images ({{images.length}})">
                 <div class="panel panel-info">
                     <div class="panel-heading">Upload images</div>
                     <div class="panel-body">
-                        <div>
-                            <input class="btn btn-default" type="file" ng-file-select="onImageSelect($files)"
-                                   multiple>
+                        <div class=row>
+                            <div class="col-xs-6"><input class="btn btn-default" type="file" ng-file-select="onImageSelect($files)" multiple></div>
+                            <div class="col-xs-6"><button type="button" ng-click="loadImages()" class="btn btn-primary btn-sm pull-right"> <span class="glyphicon glyphicon-refresh"></span> RELOAD IMAGES </button></div>
                         </div>
                     </div>
                 </div>
@@ -140,7 +140,7 @@
                     <div ng-repeat="img in images" class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
                         <div class="thumbnail">
                             <a ng-href="{{imageUrl(img)}}" target="_blank">
-                                <img ng-src="{{imageUrl(img.thumb)}}" class="img-thumbnail">
+                                <img ng-src="{{thumbUrl(img)}}" class="img-thumbnail">
                             </a>
 
                             <div class="caption">
@@ -165,7 +165,7 @@
                 </div>
             </tab>
 
-            <tab heading="Files">
+            <tab heading="Files  ({{docfiles.length}})">
 
                 <div class="panel panel-info">
                     <div class="panel-heading">Upload files</div>

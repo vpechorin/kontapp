@@ -308,6 +308,15 @@ angular.module('kontApp.controllers', [])
                 return l;
             };
 
+            $scope.thumbUrl = function(img) {
+                if (img.thumb == null) {
+                  return "/images/282.gif";
+                }
+                else {
+                  return "/att" + img.thumb.directoryPath + "/" + img.name;
+                }
+            };
+
             $scope.imgSetMain = function(img) {
                 Restangular.one('pages', $stateParams.pageId).one('images', img.id).all("setmain").customPOST().then(function () {
                     $scope.loadImages();
@@ -349,7 +358,7 @@ angular.module('kontApp.controllers', [])
                         // method: 'POST' or 'PUT',
                         // headers: {'header-key': 'header-value'},
                         // withCredentials: true,
-                        data: {myObj: $scope.page},
+                        data: { fileNum: i },
                         file: file
                         // or list of files: $files for html5 only
                         /* set the file formData name ('Content-Desposition'). Default is 'file' */
@@ -397,7 +406,7 @@ angular.module('kontApp.controllers', [])
                         // method: 'POST' or 'PUT',
                         // headers: {'header-key': 'header-value'},
                         // withCredentials: true,
-                        data: {myObj: $scope.page},
+                        data: {fileNum: i},
                         file: file
                         // or list of files: $files for html5 only
                         /* set the file formData name ('Content-Desposition'). Default is 'file' */
