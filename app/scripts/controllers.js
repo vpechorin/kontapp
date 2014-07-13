@@ -4,21 +4,19 @@
 
 angular.module('kontApp.controllers', [])
 .controller('LoginController', ['$scope', '$rootScope', '$location', '$cookieStore', 'UserService', function ($scope, $rootScope, $location, $cookieStore, UserService) {
-  $scope.rememberMe = false;
+  $scope.rememberMe = true;
   $scope.login = function () {
-    UserService.authenticate($.param({username: $scope.username, password: $scope.password}),
-                             function (authenticationResult) {
-                               console.log("auth Result: " + authenticationResult);
-                               var authToken = authenticationResult.token;
-                               $rootScope.authToken = authToken;
-                               if ($scope.rememberMe) {
-                                 $cookieStore.put('authToken', authToken);
-                               }
-                               UserService.get(function (user) {
-                                 $rootScope.user = user;
-                                 $location.path("/");
-                               });
-                             });
+    UserService.authenticate($.param({username: $scope.username, password: $scope.password}), function (authenticationResult) {
+      var authToken = authenticationResult.token;
+      $rootScope.authToken = authToken;
+      if ($scope.rememberMe) {
+        $cookieStore.put('authToken', authToken);
+      }
+      UserService.get(function (user) {
+        $rootScope.user = user;
+        $location.path("/");
+      });
+    });
   };
 }])
 .controller('PageTreeController', ['$scope', '$state', '$stateParams', 'Restangular', function ($scope, $state, $stateParams, Restangular) {

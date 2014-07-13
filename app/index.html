@@ -2,82 +2,75 @@
 <html xmlns:ng="http://angularjs.org" ng-app="kontApp">
 <head>
     <meta charset="utf-8">
-    <title>kontApp</title>
+    <title>kontApp/kontempl</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <link rel="stylesheet" type="text/css" href="scripts/bower_components/angular-ui-tree/dist/angular-ui-tree.min.css">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:400,300,700' rel='stylesheet' type='text/css'>
 </head>
 <body>
 
-<nav class="navbar navbar-inverse navbar-static-top role=navigation">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#topmenu-navbar-collapse-1">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#">kontempl</a>
-        </div>
-        <div class="collapse navbar-collapse" id="topmenu-navbar-collapse-1">
+    <nav class="navbar navbar-inverse navbar-static-top role=navigation">
+        <div class="container">
             <ul class="nav navbar-nav">
                 <li><a ui-sref="sites"><i class="fa fa-list"></i> Sites</a></li>
                 <li><a ui-sref="users"><i class="fa fa-users"></i> User accounts</a></li>
-                <li><a ui-sref="profile">Profile</a></li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-sitemap"></i> Sitemap <b
-                            class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li><a ui-sref="sitemap({actionName: 'update'})"><i class="fa fa-refresh"></i> Update sitemap</a></li>
-                        <li><a ui-sref="sitemap({actionName: 'submit'})"><i class="fa fa-upload"></i> Re-Submit sitemap</a></li>
-                        <li><a ui-sref="prerender"><i class="fa fa-save"></i> Prerender pages</a></li>
-                    </ul>
-                </li>
-                <li><span class="glyphicon glyphicon-user"></span> {{user.name}}</li>
+                <li><a ui-sref="sitemap({actionName: 'update'})"><i class="fa fa-sitemap"></i> Update sitemap</a></li>
+                <li><a ui-sref="sitemap({actionName: 'submit'})"><i class="fa fa-upload"></i> Re-Submit sitemap</a></li>
+                <li><a ui-sref="prerender"><i class="fa fa-cubes"></i> Prerender pages</a></li>
                 <li><a ui-sref="logout"><i class="fa fa-sign-out"></i> Log Out</a></li>
             </ul>
         </div>
+    </nav>
+
+    <div class="container">
+        <div ui-view></div>
     </div>
-</nav>
-<div class="container">
-    <div ui-view></div>
-</div>
 
-<nav class="navbar navbar-default navbar-fixed-bottom" role="navigation" id="statusbar">
-    <div class="container-fluid">
-        <div class="loading-widget"><img src="/images/ajax-loader2.gif"></div>
-    </div>
-</nav>
+    <nav class="navbar navbar-default navbar-fixed-bottom" role="navigation" id="statusbar">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="loading-widget"><img src="/images/ajax-loader2.gif"></div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="pull-right">
+                        <span class="kontempl"><i class="fa fa-star-o"></i> kontempl</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
 
-<script>
-    //optional need to be loaded before angular-file-upload-shim(.min).js
-    FileAPI = {
-        jsUrl: 'scripts/bower_components/ng-file-upload/FileAPI.min.js',
-        flashUrl: 'scripts/bower_components/ng-file-upload/FileAPI.flash.swf'
-    }
-</script>
+    <script>
+        //optional need to be loaded before angular-file-upload-shim(.min).js
+        FileAPI = {
+            jsUrl: 'scripts/bower_components/ng-file-upload/FileAPI.min.js',
+            flashUrl: 'scripts/bower_components/ng-file-upload/FileAPI.flash.swf'
+        }
+    </script>
 
-<script src="scripts/bower_components/jquery/dist/jquery.min.js"></script>
-<script src="scripts/bower_components/ng-file-upload/angular-file-upload-shim.min.js"></script>
-<script src="scripts/bower_components/angular/angular.min.js"></script>
-<script src="scripts/bower_components/ng-file-upload/angular-file-upload.min.js"></script>
-<script src="scripts/bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
-<script src="scripts/bower_components/angular-resource/angular-resource.min.js"></script>
-<script src="scripts/bower_components/angular-cookies/angular-cookies.min.js"></script>
-<script src="scripts/bower_components/angular-ui-tree/dist/angular-ui-tree.min.js"></script>
-<script src="scripts/bower_components/lodash/dist/lodash.min.js"></script>
-<script src="scripts/bower_components/restangular/dist/restangular.min.js"></script>
-<script src="scripts/bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
-<script src="scripts/bower_components/ng-ckeditor/ng-ckeditor.min.js"></script>
-<script src="scripts/bower_components/ng-ckeditor/libs/ckeditor/ckeditor.js"></script>
-<script src="scripts/config.js"></script>
-<script src="scripts/app.js"></script>
-<script src="scripts/services.js"></script>
-<script src="scripts/controllers.js"></script>
-<script src="scripts/filters.js"></script>
-<script src="scripts/directives.js"></script>
+    <script src="scripts/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="scripts/bower_components/ng-file-upload/angular-file-upload-shim.min.js"></script>
+    <script src="scripts/bower_components/angular/angular.min.js"></script>
+    <script src="scripts/bower_components/ng-file-upload/angular-file-upload.min.js"></script>
+    <script src="scripts/bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script src="scripts/bower_components/angular-resource/angular-resource.min.js"></script>
+    <script src="scripts/bower_components/angular-cookies/angular-cookies.min.js"></script>
+    <script src="scripts/bower_components/angular-ui-tree/dist/angular-ui-tree.min.js"></script>
+    <script src="scripts/bower_components/lodash/dist/lodash.min.js"></script>
+    <script src="scripts/bower_components/restangular/dist/restangular.min.js"></script>
+    <script src="scripts/bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="scripts/bower_components/ng-ckeditor/ng-ckeditor.min.js"></script>
+    <script src="scripts/bower_components/ng-ckeditor/libs/ckeditor/ckeditor.js"></script>
+    <script src="scripts/config.js"></script>
+    <script src="scripts/app.js"></script>
+    <script src="scripts/services.js"></script>
+    <script src="scripts/controllers.js"></script>
+    <script src="scripts/filters.js"></script>
+    <script src="scripts/directives.js"></script>
 
 </body>
 </html>

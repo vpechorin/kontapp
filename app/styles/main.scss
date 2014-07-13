@@ -1,9 +1,10 @@
+$font-stack: 'Roboto Condensed', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 $icon-font-path: "../scripts/vendor/fonts/bootstrap/";
 @import '../scripts/vendor/stylesheets/bootstrap';
 
 /* Space out content a bit */
 body {
-    padding-top: 20px;
+    padding-top: 0px;
     padding-bottom: 20px;
 }
 
@@ -48,6 +49,14 @@ body {
 #statusbar {
   min-height: 18px;
   height: 18px;
+}
+
+.kontempl {
+  font-family: $font-stack;
+  font-weight: 700;
+  font-style:italic;
+  color: #B80000 !important;
+  text-transform: uppercase;
 }
 
 .form-product { padding-top: 12px;}
