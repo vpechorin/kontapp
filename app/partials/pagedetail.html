@@ -184,16 +184,24 @@
                         <table class="table table-condensed table-striped">
                             <tr>
                                 <th>Name</th>
-                                <th>Content Type</th>
+                                <th>Title</th>
                                 <th>Size</th>
                                 <th>Operations</th>
                             </tr>
                             <tr ng-repeat="df in docfiles">
                                 <td><a ng-href="{{fileUrl(df)}}" target="_blank">{{df.name}}</a></td>
-                                <td>{{df.contentType}}</td>
+                                <td class="docfile-table-title-col">
+                                    <div class="input-group input-group-sm">
+                                    <input type="text" class="form-control" ng-model="df.title">
+                                        <span class="input-group-btn">
+                                        <button type="button" class="btn btn-default btn-sm" ng-click="saveFile(df)" title="SAVE"><span
+                                                class="glyphicon glyphicon-save"></span></button>
+                                        </span>
+                                    </div>
+                                </td>
                                 <td>{{df.hfileSize}}</td>
                                 <td>
-                                    <div class="btn-group btn-group-xs">
+                                    <div class="btn-group btn-group-sm">
                                         <button type="button" class="btn btn-default" ng-click="fileMoveUp(df)"><span
                                                 class="glyphicon glyphicon-arrow-up"></span>
                                         </button>

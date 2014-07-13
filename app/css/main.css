@@ -1,4 +1,4 @@
-/* normalize.css v3.0.0 | MIT License | git.io/normalize */
+/*! normalize.css v3.0.0 | MIT License | git.io/normalize */
 /* line 9, ../scripts/vendor/stylesheets/bootstrap/_normalize.scss */
 html {
   font-family: sans-serif;
@@ -225,7 +225,7 @@ input[type="search"]::-webkit-search-decoration {
 
 /* line 375, ../scripts/vendor/stylesheets/bootstrap/_normalize.scss */
 fieldset {
-  border: 1px solid silver;
+  border: 1px solid #c0c0c0;
   margin: 0 2px;
   padding: 0.35em 0.625em 0.75em;
 }
@@ -262,7 +262,7 @@ th {
   /* line 8, ../scripts/vendor/stylesheets/bootstrap/_print.scss */
   * {
     text-shadow: none !important;
-    color: black !important;
+    color: #000 !important;
     background: transparent !important;
     box-shadow: none !important;
   }
@@ -292,7 +292,7 @@ th {
   /* line 35, ../scripts/vendor/stylesheets/bootstrap/_print.scss */
   pre,
   blockquote {
-    border: 1px solid #999999;
+    border: 1px solid #999;
     page-break-inside: avoid;
   }
 
@@ -328,7 +328,7 @@ th {
 
   /* line 67, ../scripts/vendor/stylesheets/bootstrap/_print.scss */
   select {
-    background: white !important;
+    background: #fff !important;
   }
 
   /* line 72, ../scripts/vendor/stylesheets/bootstrap/_print.scss */
@@ -339,18 +339,18 @@ th {
   /* line 77, ../scripts/vendor/stylesheets/bootstrap/_print.scss */
   .table td,
   .table th {
-    background-color: white !important;
+    background-color: #fff !important;
   }
 
   /* line 83, ../scripts/vendor/stylesheets/bootstrap/_print.scss */
   .btn > .caret,
   .dropup > .btn > .caret {
-    border-top-color: black !important;
+    border-top-color: #000 !important;
   }
 
   /* line 87, ../scripts/vendor/stylesheets/bootstrap/_print.scss */
   .label {
-    border: 1px solid black;
+    border: 1px solid #000;
   }
 
   /* line 91, ../scripts/vendor/stylesheets/bootstrap/_print.scss */
@@ -361,7 +361,7 @@ th {
   /* line 96, ../scripts/vendor/stylesheets/bootstrap/_print.scss */
   .table-bordered th,
   .table-bordered td {
-    border: 1px solid #dddddd !important;
+    border: 1px solid #ddd !important;
   }
 }
 /* line 10, ../scripts/vendor/stylesheets/bootstrap/_scaffolding.scss */
@@ -5702,7 +5702,7 @@ input[type="button"].btn-block {
 /* line 5, ../scripts/vendor/stylesheets/bootstrap/_labels.scss */
 .label {
   display: inline;
-  padding: 0.2em 0.6em 0.3em;
+  padding: .2em .6em .3em;
   font-size: 75%;
   font-weight: bold;
   line-height: 1;
@@ -7334,7 +7334,7 @@ button.close {
   border: 1px solid white;
   border-radius: 10px;
   cursor: pointer;
-  background-color: black \9;
+  background-color: #000 \9;
   background-color: rgba(0, 0, 0, 0);
 }
 /* line 177, ../scripts/vendor/stylesheets/bootstrap/_carousel.scss */
@@ -7648,7 +7648,7 @@ body {
 /* line 43, ../styles/main.scss */
 .group-title {
   background-color: #687074 !important;
-  color: white !important;
+  color: #FFF !important;
 }
 
 /* line 48, ../styles/main.scss */
@@ -7660,4 +7660,9 @@ body {
 /* line 53, ../styles/main.scss */
 .form-product {
   padding-top: 12px;
+}
+
+/* line 55, ../styles/main.scss */
+.docfile-table-title-col {
+  width: 300px;
 }
