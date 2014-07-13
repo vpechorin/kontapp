@@ -794,6 +794,9 @@ angular.module('kontApp.controllers', [])
 .controller('SitemapController', ['$scope', '$state', '$stateParams', 'Restangular', function ($scope, $state, $stateParams, Restangular) {
   Restangular.all('sitemaps').all($stateParams.actionName).doPOST([{}]);
 }])
+.controller('PrerenderController', ['$scope', '$state', '$stateParams', 'Restangular', function ($scope, $state, $stateParams, Restangular) {
+  Restangular.all('prerender').all("submit").doPOST([{}]);
+}])
 .controller('SideNavController', ['$scope', function ($scope) {
 
 }]);

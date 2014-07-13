@@ -90,7 +90,13 @@ angular.module('kontApp', [
                     url: '/sitemap/{actionName}',
                     template: 'OK',
                     controller: 'SitemapController'
-                });
+                })
+                .state('prerender', {
+                    url: '/prerender/do',
+                    template: 'OK',
+                    controller: 'PrerenderController'
+                })
+            ;
 
             /* Register error provider that shows message on failed requests or redirects to login page on
             * unauthenticated requests */
