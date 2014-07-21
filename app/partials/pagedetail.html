@@ -88,6 +88,39 @@
                 </form>
 
                 <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-6">
+                                Embedded images
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="pull-right">
+                                    <div class="col-xs-6"><input class="btn btn-default" type="file" ng-file-select="onEmbedImageSelect($files)" multiple></div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div ng-repeat="emb in embedimages" class="col-xs-12">
+                                <div class=embedImageCont>
+                                    <img ng-src="{{embedImageUrl(emb)}}" class="img-responsive">
+                                    <div class="input-group input-group-sm">
+                                        <input type=text value="{{embedImageUrl(emb)}}" class="form-control" readonly>
+                                        <span class="input-group-addon">{{emb.hfileSize}}</span>
+                                        <span class="input-group-addon">{{emb.width}} x {{emb.height}}</span>
+                                        <div class="input-group-btn">
+                                            <button type="button" class="btn btn-danger" title="Delete"><span class="glyphicon glyphicon-trash" ng-click="removeEmbedImage(emb)"></span></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel panel-info">
                     <div class="panel-heading">Page properties</div>
                     <div class="panel-body">
                         <div ng-repeat="prop in page.properties">
@@ -124,7 +157,7 @@
                 </div>
             </tab>
 
-            <tab heading="Images ({{images.length}})">
+            <tab heading="Gallery ({{images.length}})">
                 <div class="panel panel-info">
                     <div class="panel-heading">Upload images</div>
                     <div class="panel-body">

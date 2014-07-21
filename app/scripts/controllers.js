@@ -251,6 +251,8 @@ angular.module('kontApp.controllers', [])
   $scope.page = {};
   $scope.images = [];
   $scope.docfiles = [];
+  $scope.embedimages = [];
+
   $scope.master = {};
   $scope.newPropName = "";
   $scope.newPropContent = "";
@@ -543,6 +545,67 @@ angular.module('kontApp.controllers', [])
     var l = "/att/" + $scope.page.siteId + df.directoryPath + "/" + df.name;
     return l;
   };
+
+  // ------------------------------
+
+  $scope.onEmbedImageSelect = function ($files) {
+    //$files: an array of files selected, each file has name, size, and type.
+    $scope.selectedFiles = [];
+    $scope.progress = [];
+    if ($scope.upload && $scope.upload.length > 0) {
+      for (var i = 0; i < $scope.upload.length; i++) {
+        if ($scope.upload[i] != null) {
+          $scope.upload[i].abort();
+        }
+      }
+    }
+    $scope.upload = [];
+    $scope.uploadResult = [];
+    $scope.selectedFiles = $files;
+    $scope.dataUrls = [];
+    for (var i = 0; i < $files.length; i++) {
+      var file = $files[i];
+      $scope.upload = $upload.upload({
+        url: '/api/pages/' + $stateParams.pageId + '/embed',
+        method: 'POST',
+        data: {fileNum: i},
+        file: file
+      }).progress(function (evt) {
+        $scope.progress[i] = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
+        console.log('percent: ' + parseInt(100.0 * evt.loaded / evt.total));
+      }).success(function (data, status, headers, config) {
+        $scope.uploadResult.push(data);
+        $scope.loadEmbedImages();
+      })
+      .xhr(
+        function (xhr) {
+          xhr.upload.addEventListener('abort', function() {
+            console.log('abort complete');
+          }, false)});
+    }
+  };
+
+  $scope.loadEmbedImages = function() {
+    Restangular.one('pages', $stateParams.pageId).all('embed').getList().then(function (list) {
+      $scope.embedimages = list;
+    });
+  };
+
+  $scope.loadEmbedImages();
+
+  $scope.removeEmbedImage = function(emb) {
+    Restangular.one('pages', $stateParams.pageId).one('embed', emb.id).remove().then(function () {
+      $scope.loadEmbedImages();
+    });
+  };
+
+  $scope.embedImageUrl = function(emb) {
+    var l = "/att/" + $scope.page.siteId + emb.directoryPath + "/" + emb.name;
+    return l;
+  };
+
+  // ------------------------------
+
 
   $scope.addProp = function (localScope) {
     var pageProperty = {
