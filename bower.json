@@ -19,8 +19,9 @@
         "angular-ui-tree": "latest",
         "angular-bootstrap": "latest",
         "es5-shim": "latest",
-        "ng-ckeditor": "latest",
-        "ng-file-upload": "latest"
+        "ng-file-upload": "latest",
+        "textAngular": "latest",
+        "rangy-official": "latest"
     },
     "devDependencies": {
     },

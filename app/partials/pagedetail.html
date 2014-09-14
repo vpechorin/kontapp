@@ -64,7 +64,7 @@
 
                     <div class="form-group">
                         <div ng-if="page.richText == true" class="col-xs-12">
-                            <textarea ng-model="page.body" ckeditor="editorOptions" rows="12"></textarea>
+                            <text-angular ng-model="page.body"></text-angular>
                         </div>
                         <div ng-if="page.richText == false" class="col-xs-12">
                             <textarea ng-model="page.body" class="form-control" rows="8"></textarea>
@@ -72,6 +72,10 @@
                     </div>
 
                     <div class="form-group">
+                        <div class="col-xs-12">
+                            <label for="pageTags">HTML Title</label>
+                            <input type="text" class="form-control" ng-model="page.htmlTitle" name="htmlTitle">
+                        </div>
                         <div class="col-xs-12">
                             <label for="pageDesc">Meta description</label>
                             <textarea class="form-control" ng-model="page.description" name="pageDesc" rows="3"></textarea>
@@ -111,7 +115,7 @@
                                         <span class="input-group-addon">{{emb.hfileSize}}</span>
                                         <span class="input-group-addon">{{emb.width}} x {{emb.height}}</span>
                                         <div class="input-group-btn">
-                                            <button type="button" class="btn btn-danger" title="Delete"><span class="glyphicon glyphicon-trash" ng-click="removeEmbedImage(emb)"></span></button>
+                                            <button type="button" class="btn btn-danger" title="Delete" ng-click="removeEmbedImage(emb)"><span class="glyphicon glyphicon-trash"></span></button>
                                         </div>
                                     </div>
                                 </div>
@@ -188,8 +192,8 @@
                                     </button>
                                     <button type="button" class="btn btn-default" ng-click="imgMoveDown(img)"><span
                                             class="glyphicon glyphicon-arrow-right"></span></button>
-                                    <button type="button" class="btn btn-danger"><span
-                                            class="glyphicon glyphicon-trash" ng-click="removeImage(img)"></span></button>
+                                    <button type="button" class="btn btn-danger" ng-click="removeImage(img)"><span
+                                            class="glyphicon glyphicon-trash"></span></button>
                                 </div>
                             </div>
                         </div>
@@ -227,8 +231,7 @@
                                     <div class="input-group input-group-sm">
                                     <input type="text" class="form-control" ng-model="df.title">
                                         <span class="input-group-btn">
-                                        <button type="button" class="btn btn-default btn-sm" ng-click="saveFile(df)" title="SAVE"><span
-                                                class="glyphicon glyphicon-save"></span></button>
+                                        <button type="button" class="btn btn-default btn-sm" ng-click="saveFile(df)" title="SAVE"><i class="fa fa-floppy-o"></i></button>
                                         </span>
                                     </div>
                                 </td>
@@ -240,8 +243,8 @@
                                         </button>
                                         <button type="button" class="btn btn-default" ng-click="fileMoveDown(df)"><span
                                                 class="glyphicon glyphicon-arrow-down"></span></button>
-                                        <button type="button" class="btn btn-danger"><span
-                                                class="glyphicon glyphicon-trash" ng-click="removeFile(df)"></span></button>
+                                        <button type="button" class="btn btn-danger" ng-click="removeFile(df)"><span
+                                                class="glyphicon glyphicon-trash"></span></button>
                                     </div>
                                 </td>
                             </tr>

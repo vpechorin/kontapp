@@ -8,7 +8,8 @@ angular.module('kontApp', [
     'ui.bootstrap',
     'ui.tree',
     'restangular',
-    'ngCkeditor',
+//    'ngCkeditor',
+    'textAngular',
     'angularFileUpload',
     'kontApp.filters',
     'kontApp.services',
@@ -151,16 +152,16 @@ angular.module('kontApp', [
             });
 
     }])
-    .run(function ($rootScope, $location, $cookieStore, UserService) {
+    .run(function ($rootScope, $location, $cookieStore, Restangular) {
 
-        console.log("Initialize rootScope");
+        // console.log("Initialize rootScope");
 
         /* Reset error when a new view is loaded */
         $rootScope.$on('$viewContentLoaded', function () {
             delete $rootScope.error;
         });
 
-        console.log("Initialize hasRole function");
+        // console.log("Initialize hasRole function");
 
         $rootScope.hasRole = function (role) {
 
@@ -188,9 +189,9 @@ angular.module('kontApp', [
         var authToken = $cookieStore.get('authToken');
         if (authToken !== undefined) {
             $rootScope.authToken = authToken;
-            UserService.get(function (user) {
-                $rootScope.user = user;
-                $location.path(originalPath);
+            Restangular.one('user').get().then(function (currentUser) {
+              $rootScope.user = currentUser.plain();
+              $location.path(originalPath);
             });
         }
 

@@ -1,41 +1,7 @@
 'use strict';
 
 /* Services */
-
-// Demonstrate how to register services
-// In this case it is a simple value service.
 var kontAppServices = angular.module('kontApp.services', ['ngResource']);
-
-kontAppServices.factory('SiteService', ['$resource', function($resource) {
-    return $resource('/api/sites/:siteId', { }, {
-        query: { method: "GET", isArray: true },
-        update: {method:'PUT', params: {siteId: '@siteId'}}
-    });
-}]);
-
-kontAppServices.factory('UserService', ['$resource', function($resource) {
-    return $resource('/api/user/:action', { }, {
-        authenticate: {
-            method: "POST",
-            params: {'action': 'authenticate'},
-            headers : {'Content-Type': 'application/x-www-form-urlencoded'}
-        }
-    });
-}]);
-
-kontAppServices.factory('UserOpsService', ['$resource', function($resource) {
-    return $resource('/api/users/:userId', { }, {
-        query: { method: "GET", isArray: true },
-        update: {method:'PUT', params: {userId: '@userId'}},
-        deleteToken: {method:'DELETE', params: {userId: '@userId', tokenId: '@'}}
-    });
-}]);
-
-kontAppServices.factory('PageService', ['$resource', function($resource) {
-    return $resource('/api/pages/:pageId', { }, {
-        query: { method: "GET", isArray: true }
-    });
-}]);
 
 kontAppServices.provider('requestNotification', function () {
         // This is where we keep subscribed listeners
@@ -103,6 +69,3 @@ kontAppServices.provider('requestNotification', function () {
         };
     }
 );
-
-
-

@@ -3,21 +3,53 @@
 /* Controllers */
 
 angular.module('kontApp.controllers', [])
-.controller('LoginController', ['$scope', '$rootScope', '$location', '$cookieStore', 'UserService', function ($scope, $rootScope, $location, $cookieStore, UserService) {
+.controller('LoginController', ['$scope', '$rootScope', '$location', '$cookieStore', 'Restangular', function ($scope, $rootScope, $location, $cookieStore, Restangular) {
   $scope.rememberMe = true;
+  $scope.responseErrorShow = false;
+  $scope.responseError = "";
+
   $scope.login = function () {
-    UserService.authenticate($.param({username: $scope.username, password: $scope.password}), function (authenticationResult) {
-      var authToken = authenticationResult.token;
-      $rootScope.authToken = authToken;
+
+    var credentials = {
+      username: $scope.username,
+      password: $scope.password
+    };
+
+    Restangular.all('user').customPOST(credentials,'authenticate').then( function(tokenContainer) {
+
+      console.log("Success");
+
+      $rootScope.authToken = tokenContainer.token;
       if ($scope.rememberMe) {
-        $cookieStore.put('authToken', authToken);
+        $cookieStore.put('authToken', tokenContainer.token);
       }
-      UserService.get(function (user) {
-        $rootScope.user = user;
+      // retrieve current user details
+      Restangular.one('user').get().then(function (userData) {
+        $rootScope.user = userData;
         $location.path("/");
       });
+
+    }, function (response) {
+      if (response.data) {
+        if (response.data.message) {
+          $scope.responseError = "Error: " + response.data.message;
+        }
+        else {
+          $scope.responseError = "Error: " + response.data.error;
+        }
+      }
+      else {
+        $scope.responseError = "Error: " + response.statusText;
+      }
+
+      $scope.responseErrorShow = true;
+
+      console.log("Error with status code: ", response.status);
+      console.log("Error message: ", $scope.responseError);
     });
+
   };
+
 }])
 .controller('PageTreeController', ['$scope', '$state', '$stateParams', 'Restangular', function ($scope, $state, $stateParams, Restangular) {
   $scope.data = {};
@@ -618,7 +650,8 @@ angular.module('kontApp.controllers', [])
       $scope.page.propertyMap= updatedPage.propertyMap;
       localScope.newPropName = "";
       localScope.newPropContent = "";
-      $scope.master.properties = angular.copy(page.properties);
+      $scope.master.properties = angular.copy(updatedPage.properties);
+      //$scope.master.properties = Restangular.copy(updatedPage.properties);
     }, function (response) {
       $scope.responseError = "Error creating property: " + response.statusText;
       $scope.responseErrorShow = true;
@@ -630,7 +663,6 @@ angular.module('kontApp.controllers', [])
   $scope.saveProp = function (prop) {
     Restangular.one('pages', $stateParams.pageId).one('properties', prop.id).customPUT(prop).then(function () {
       console.log("Success - property saved");
-      $scope.master.properties = angular.copy(page.properties);
     }, function (response) {
       $scope.responseError = "Error saving property: " + response.statusText;
       $scope.responseErrorShow = true;
@@ -643,7 +675,6 @@ angular.module('kontApp.controllers', [])
     Restangular.one('pages', $stateParams.pageId).one('properties', prop.id).remove().then(function () {
       var idx = $scope.page.properties.indexOf(prop);
       $scope.page.properties.splice(idx, 1);
-      $scope.master.properties = angular.copy(page.properties);
       console.log("Success - property removed");
     }, function (response) {
       $scope.responseError = "Error removing property: " + response.statusText;
