@@ -1,0 +1,18 @@
+<div class="row">
+    <div class="col-md-2">
+        <div class="list-group">
+            <li class="list-group-item list-group-item-success">
+                <strong>Data forms</strong>
+            </li>
+            <li ng-repeat="f in dataforms | orderBy:name" class="list-group-item">
+                <a  ui-sref=".detail({formId: f.uuid})">{{f.name}}</a>
+            </li>
+            <li class="list-group-item list-group-item-warning">
+                <a ui-sref=".create">Add a new data form</a>
+            </li>
+        </div>
+    </div>
+    <div class="col-md-10">
+        <div ui-view></div>
+    </div>
+</div>
