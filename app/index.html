@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <link rel="stylesheet" type="text/css" href="scripts/bower_components/angular-ui-tree/dist/angular-ui-tree.min.css">
     <link rel="stylesheet" type="text/css" href="scripts/bower_components/angular-loading-bar/build/loading-bar.css">
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:400,300,700' rel='stylesheet' type='text/css'>
     <!-- link rel='stylesheet' href='scripts/bower_components/textAngular/dist/textAngular.min.css' -->
 </head>
@@ -16,35 +16,28 @@
 
     <nav class="navbar navbar-inverse navbar-static-top role=navigation">
         <div class="container">
-            <ul class="nav navbar-nav">
-                <li><a ui-sref="sites"><i class="fa fa-list"></i> Sites</a></li>
-                <li><a ui-sref="users"><i class="fa fa-users"></i> User accounts</a></li>
-                <li><a ui-sref="sitemap({actionName: 'update'})"><i class="fa fa-sitemap"></i> Update sitemap</a></li>
-                <li><a ui-sref="sitemap({actionName: 'submit'})"><i class="fa fa-upload"></i> Re-Submit sitemap</a></li>
-                <li><a ui-sref="prerender"><i class="fa fa-cubes"></i> Prerender pages</a></li>
-                <li><a ui-sref="logout"><i class="fa fa-sign-out"></i> Log Out</a></li>
-            </ul>
+            <div class="row">
+                <div class="col-sm-10">
+                    <ul class="nav navbar-nav">
+                        <li><a ui-sref="sites"><i class="fa fa-list"></i> Sites</a></li>
+                        <li><a ui-sref="dataforms"><i class="fa fa-file-text-o"></i> Data forms</a></li>
+                        <li><a ui-sref="users"><i class="fa fa-users"></i> User accounts</a></li>
+                        <li><a ui-sref="sitemap({actionName: 'update'})"><i class="fa fa-sitemap"></i> Update sitemap</a></li>
+                        <li><a ui-sref="sitemap({actionName: 'submit'})"><i class="fa fa-upload"></i> Re-Submit sitemap</a></li>
+                        <li><a ui-sref="prerender"><i class="fa fa-cubes"></i> Prerender pages</a></li>
+                        <li><a ui-sref="logout"><i class="fa fa-sign-out"></i> Log Out</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-2">
+                    <p class="navbar-text navbar-right"><span class="kontempl"><i class="fa fa-star-o"></i> kontempl</span></p>
+                </div>
+            </div>
         </div>
     </nav>
 
     <div class="container">
         <div ui-view></div>
     </div>
-
-    <nav class="navbar navbar-default navbar-fixed-bottom" role="navigation" id="statusbar">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-6">
-                    <!-- div class="loading-widget"><img src="/images/ajax-loader2.gif"></div -->
-                </div>
-                <div class="col-sm-6">
-                    <div class="pull-right">
-                        <span class="kontempl"><i class="fa fa-star-o"></i> kontempl</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </nav>
 
     <script src="dist/app.js" type="text/javascript"></script>
 

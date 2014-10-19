@@ -46,6 +46,27 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $htt
     controller: 'LoginController'
   })
 
+  .state('dataforms', {
+    url: '/dataforms',
+    templateUrl: 'partials/dataforms.html',
+    controller: 'DataFormListController'
+  })
+  .state('dataforms.detail', {
+    url: '/edit/{formId:[0-9]{0,9}}',
+    templateUrl: 'partials/dataformdetail.html',
+    controller: 'DataFormDetailController'
+  })
+  .state('dataforms.create', {
+    url: '/create',
+    templateUrl: 'partials/dataformcreate.html',
+    controller: 'DataFormCreateController'
+  })
+  .state('dataformrecords', {
+    url: '/{formId:[0-9]{0,9}}',
+    templateUrl: 'partials/dataformrecords.html',
+    controller: 'DataFormRecordsController'
+  })
+
   .state('sites', {
     url: '/sites',
     templateUrl: 'partials/sitelist.html',
@@ -70,22 +91,6 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $htt
     url: '/{siteId:[0-9]{0,9}}/pages/{pageId:[0-9]{0,9}}',
     templateUrl: 'partials/pagedetail.html',
     controller: 'PageEditController'
-  })
-
-  .state('dataforms', {
-    url: '/dataforms',
-    templateUrl: 'partials/dataforms.html',
-    controller: 'DataFormListController'
-  })
-  .state('dataforms.detail', {
-    url: '/{formId}',
-    templateUrl: 'partials/dataformdetail.html',
-    controller: 'DataFormDetailsController'
-  })
-  .state('dataforms.create', {
-    url: '/create',
-    templateUrl: 'partials/dataformdetail.html',
-    controller: 'DataFormAddController'
   })
 
   .state('users', {

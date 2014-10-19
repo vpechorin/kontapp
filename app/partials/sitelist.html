@@ -6,7 +6,7 @@
             </li>
             <li ng-repeat="site in sites | orderBy:name" class="list-group-item">
                 <a  ui-sref=".pagetree({siteId: site.id})">{{site.name}}</a>
-                <a  class="badge" ui-sref=".detail({siteId: site.id})"><span class="glyphicon glyphicon-wrench"></span></a>
+                <a  class="badge" ui-sref=".detail({siteId: site.id})"> <i class="fa fa-cog"></i> </a>
             </li>
             <li class="list-group-item list-group-item-warning">
                 <a ui-sref=".create">Add site</a>

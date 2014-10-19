@@ -2,6 +2,10 @@
 
 var app = require('angular').module('kontApp');
 
+app.controller('DataFormListController', require('./dataformlist'));
+app.controller('DataFormDetailController', require('./dataformdetail'));
+app.controller('DataFormCreateController', require('./dataformcreate'));
+app.controller('DataFormRecordsController', require('./dataformrecords'));
 app.controller('LoginController', require('./login'));
 app.controller('PageEditController', require('./pageedit'));
 app.controller('PageTreeController', require('./pagetree'));
