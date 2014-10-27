@@ -132,9 +132,11 @@ module.exports = function ($scope, $state, $stateParams, Restangular, $upload,  
         $scope.uploadResult.push(data);
         $scope.loadUploadedImages();
       })
-      .xhr(function(xhr){ xhr.upload.addEventListener('abort', function() {
+      .xhr(function(xhr) {
+        xhr.upload.addEventListener('abort', function() {
         // console.log('abort complete')
-      }, false)});
+        }, false )}
+      );
     }
     /* alternative way of uploading, send the file binary with the file's content-type.
                  Could be used to upload files to CouchDB, imgur, etc... html5 FileReader is needed.

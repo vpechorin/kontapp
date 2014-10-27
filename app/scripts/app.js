@@ -147,7 +147,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $htt
         var method = config.method;
         var url = config.url;
 
-        if (status == 401) {
+        if (status === 401) {
           $location.path('/login');
         } else {
           $rootScope.error = method + ' on ' + url + ' failed with status ' + status;
@@ -167,7 +167,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $htt
 
         var useAuthTokenHeader = true;
 
-        var isRestCall = config.url.indexOf('/api') == 0;
+        var isRestCall = config.url.indexOf('/api') === 0;
         if (isRestCall && angular.isDefined($rootScope.authToken)) {
           var authToken = $rootScope.authToken;
           if (useAuthTokenHeader) {

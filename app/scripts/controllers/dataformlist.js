@@ -16,5 +16,6 @@ module.exports = function ($scope, $state, $stateParams, Restangular) {
       $scope.responseError = 'Error removing dataform: ' + response.statusText;
       $scope.responseErrorShow = true;
     }
-  )};
+  );
+  };
 };
