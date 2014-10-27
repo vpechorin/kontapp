@@ -23,7 +23,8 @@
       "textAngular": "latest",
       "rangy-official": "latest",
       "angular-formly": "latest",
-      "angular-loading-bar": "latest"
+      "angular-loading-bar": "latest",
+      "json-formatter": "latest"
     },
     "private": true
 }

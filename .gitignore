@@ -3,3 +3,4 @@
 /.settings
 /node_modules
 /app/scripts/bower_components
+/app/ngannotate

@@ -18,12 +18,14 @@ require('textAngularSanitize');
 require('textAngular');
 require('angular-formly');
 require('angular-loading-bar');
+require('json-formatter');
 
 //var app = angular.module('kontApp', ['ui.router']);
 
 var app = angular.module('kontApp', ['ng', 'ui.router', 'ngResource', 'ngCookies',
   'ui.bootstrap', 'ui.tree',
-  'restangular','textAngular', 'formly', 'angularFileUpload', 'angular-loading-bar']);
+  'restangular','textAngular', 'formly',
+  'angularFileUpload', 'angular-loading-bar', 'jsonFormatter']);
 
 // app.constant('VERSION', require('../../package.json').version);
 
@@ -52,7 +54,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $htt
     controller: 'DataFormListController'
   })
   .state('dataforms.detail', {
-    url: '/edit/{formId:[0-9]{0,9}}',
+    url: '/{formId:[0-9]{0,9}}/edit',
     templateUrl: 'partials/dataformdetail.html',
     controller: 'DataFormDetailController'
   })
@@ -61,8 +63,8 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $htt
     templateUrl: 'partials/dataformcreate.html',
     controller: 'DataFormCreateController'
   })
-  .state('dataformrecords', {
-    url: '/{formId:[0-9]{0,9}}',
+  .state('dataforms.records', {
+    url: '/{formId:[0-9]{0,9}}/records/{pageId:[0-9]{0,9}}',
     templateUrl: 'partials/dataformrecords.html',
     controller: 'DataFormRecordsController'
   })

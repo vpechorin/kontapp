@@ -7797,3 +7797,8 @@ body {
   font-size: 100%;
   margin: 20px 0;
 }
+
+/* line 93, ../styles/main.scss */
+.btn-page-selected {
+  background-color: #EAEFEA;
+}

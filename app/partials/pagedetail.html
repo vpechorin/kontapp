@@ -89,6 +89,25 @@
                         </div>
                     </div>
 
+                    <div class="form-group">
+                        <label class="col-xs-2 col-sm-2 control-label" for="includeForm">
+                            Include data form
+                        </label>
+                        <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+                            <input type="checkbox" ng-model="page.includeForm" name="includeForm">
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-xs-2 col-sm-2 control-label" for="formName">Select data form</label>
+
+                        <div class="col-xs-10 col-sm-6 col-md-4 col-lg-3">
+                            <select class="form-control input-sm" ng-disabled="!page.includeForm" ng-model="page.formId" ng-options="f.id as f.name for f in dataforms"></select>
+                        </div>
+
+                    </div>
+
                 </form>
 
                 <div class="panel panel-info">

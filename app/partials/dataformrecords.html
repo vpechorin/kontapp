@@ -1,19 +1,42 @@
-<div class="row">
-    <div class="col-md-2">
-        <div class="list-group">
-            <li class="list-group-item list-group-item-success">
-                <strong>Data forms</strong>
-            </li>
-            <li ng-repeat="f in dataforms | orderBy:name" class="list-group-item">
-                <a ui-sref=".records({formId: f.id})">{{f.name}}</a>
-                <a  class="badge" ui-sref=".detail({formId: f.id})"><i class="fa fa-edit"></i></a>
-            </li>
-            <li class="list-group-item list-group-item-warning">
-                <a ui-sref=".create">Add a new data form</a>
-            </li>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <div class="btn-toolbar" role="toolbar">
+            <div class="btn-group">
+                <button type="button" ng-disabled="!resultPage.previous" ng-click="prevPage()" class="btn btn-default"><i class="fa fa-angle-double-left"></i></button>
+            </div>
+            <div class="btn-group">
+                <button ng-repeat="p in pages" type="button" class="btn btn-default"  ng-click="gotoPage(p.num)" ng-class="((p.num == page) ? 'btn-page-selected' : '');">{{p.label}}</button>
+            </div>
+            <div class="btn-group">
+                <button type="button" ng-disabled="!resultPage.next"  ng-click="nextPage()" class="btn btn-default"><i class="fa fa-angle-double-right"></i></button>
+            </div>
         </div>
     </div>
-    <div class="col-md-10">
-        <div ui-view></div>
+    <div class="panel-body">
+        <table class="table">
+            <tr>
+                <th>ID</th>
+                <th>Date</th>
+                <th>IP</th>
+                <th>Delete</th>
+            </tr>
+            <tr ng-repeat-start="r in records" class="active">
+                <td>{{r.id}}</td>
+                <td>{{r.postedTime}}</td>
+                <td>{{r.ip}}</td>
+                <td><button ng-click="deleteRecord(r)" class="btn btn-xs btn-danger">Delete</button></td>
+            </tr>
+            <tr>
+                <td colspan=4>
+                    <div style="max-width: 913px;">
+                        <json-formatter json="dataObjects[$index]" open="0"></json-formatter>
+                    </div>
+                </td>
+            </tr>
+            <tr ng-repeat-end class=info>
+                <td colspan=4>{{r.ua}}</td>
+            </tr>
+
+        </table>
     </div>
 </div>

@@ -11,11 +11,11 @@
     "browserify": "5.13.1",
     "browserify-shim": "^3.7.0",
     "gulp": "~3.8.8",
+    "gulp-ng-annotate": "latest",
     "gulp-clean": "^0.2.4",
     "gulp-connect": "^2.0.5",
     "gulp-eslint": "^0.1.8",
     "gulp-mocha": "^0.4.1",
-    "gulp-ngmin": "^0.2.0",
     "gulp-streamify": "0.0.5",
     "gulp-uglify": "~1.0.1",
     "grunt": "~0.4.5",
@@ -53,10 +53,11 @@
     "angular-bootstrap": "./app/scripts/bower_components/angular-bootstrap/ui-bootstrap-tpls.js",
     "textAngularSanitize": "./app/scripts/bower_components/textAngular/dist/textAngular-sanitize.min.js",
     "textAngular": "./app/scripts/bower_components/textAngular/dist/textAngular.min.js",
-    "angular-formly": "./app/scripts/bower_components/angular-formly/dist/formly.bootstrap.min.js",
+    "angular-formly": "./app/scripts/bower_components/angular-formly/dist/formly.min.js",
     "es5-shim": "./app/scripts/bower_components/es5-shim/es5-shim.min.js",
     "es5-sham": "./app/scripts/bower_components/es5-shim/es5-sham.min.js",
-    "angular-loading-bar": "./app/scripts/bower_components/angular-loading-bar/build/loading-bar.min.js"
+    "angular-loading-bar": "./app/scripts/bower_components/angular-loading-bar/build/loading-bar.min.js",
+    "json-formatter": "./app/scripts/bower_components/json-formatter/dist/json-formatter.min.js"
   },
   "browserify-shim": {
     "restangular": {

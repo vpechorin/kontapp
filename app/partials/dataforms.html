@@ -5,11 +5,11 @@
                 <strong>Data forms</strong>
             </li>
             <li ng-repeat="f in dataforms | orderBy:name" class="list-group-item">
-                <a ui-sref="dataformrecords({formId: f.id})">{{f.name}}</a>
-                <a  class="badge" ui-sref=".detail({formId: f.id})"> <i class="fa fa-cog"></i> </a>
+                <a ui-sref=".records({formId: f.id})">{{f.name}}</a>
+                <a class="badge" ui-sref=".detail({formId: f.id})"> <i class="fa fa-cog"></i> </a>
             </li>
             <li class="list-group-item list-group-item-warning">
-                <a ui-sref=".create">Add a new data form</a>
+                <a ui-sref=".create">Add a new form</a>
             </li>
         </div>
     </div>

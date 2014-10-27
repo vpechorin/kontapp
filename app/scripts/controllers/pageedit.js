@@ -7,6 +7,7 @@ module.exports = function ($scope, $state, $stateParams, Restangular, $upload,  
   $scope.images = [];
   $scope.docfiles = [];
   $scope.embedimages = [];
+  $scope.dataforms = [];
 
   $scope.master = {};
   $scope.newPropName = '';
@@ -14,6 +15,12 @@ module.exports = function ($scope, $state, $stateParams, Restangular, $upload,  
 
   $scope.editorOptions = {
     language: 'en'
+  };
+
+  $scope.loadForms = function() {
+    Restangular.all('dataforms').getList({siteId: $scope.page.siteId }).then(function (list) {
+      $scope.dataforms = list;
+    });
   };
 
   Restangular.one('pages', $stateParams.pageId).get().then(function (data) {
@@ -47,8 +54,6 @@ module.exports = function ($scope, $state, $stateParams, Restangular, $upload,  
       $scope.images = list;
     });
   };
-
-  $scope.loadImages();
 
   $scope.removeImage = function(img) {
     Restangular.one('pages', $stateParams.pageId).one('images', img.id).remove().then(function () {
@@ -285,6 +290,8 @@ module.exports = function ($scope, $state, $stateParams, Restangular, $upload,  
   };
 
   $scope.loadFiles();
+  $scope.loadImages();
+  $scope.loadForms();
 
   $scope.removeFile = function(df) {
     Restangular.one('pages', $stateParams.pageId).one('files', df.id).remove().then(function () {

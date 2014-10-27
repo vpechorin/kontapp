@@ -8,11 +8,12 @@ var browserify = require('browserify')
   , gulp = require('gulp')
   , karma = require('gulp-karma')
   , mocha = require('gulp-mocha')
-  , ngmin = require('gulp-ngmin')
   , protractor = require('gulp-protractor').protractor
   , source = require('vinyl-source-stream')
   , streamify = require('gulp-streamify')
   , uglify = require('gulp-uglify');
+
+var ngAnnotate = require('gulp-ng-annotate');
 
 /*
  * Useful tasks:
@@ -71,17 +72,14 @@ gulp.task('browserify', /*['lint', 'unit'],*/ function() {
   return bundle();
 });
 
-gulp.task('ngmin', ['lint'], function() {
-  return gulp.src([
-    'app/scripts/**/*.js',
-    '!app/scripts/bower-components/**',
-  ])
-  .pipe(ngmin())
-  .pipe(gulp.dest('./app/ngmin'));
-});
+gulp.task('ngannotate', function () {
+  return gulp.src(['./app/scripts/**/*.js', '!./app/scripts/bower_components/**' ])
+    .pipe(ngAnnotate())
+    .pipe(gulp.dest('./app/ngannotate'));
+    });
 
-gulp.task('browserify-min', ['ngmin'], function() {
-  return browserify('./app/ngmin/app.js')
+gulp.task('browserify-min', ['ngannotate'], function() {
+  return browserify('./app/ngannotate/app.js')
   .bundle()
   .pipe(source('app.min.js'))
   .pipe(streamify(uglify({ mangle: false })))
@@ -99,7 +97,7 @@ gulp.task('watch', function() {
   gulp.start('server');
   gulp.watch([
     'app/scripts/**/*.js',
-    '!app/scripts/bower-components/**',
+    '!app/scripts/bower_components/**',
   ], ['fast']);
 });
 
