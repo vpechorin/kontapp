@@ -1,12 +1,9 @@
 'use strict';
 
-//require('es5-shim');
-//require('es5-sham');
-
 require('jquery');
-require('ng-file-upload-shim');
+
 var angular = require('angular');
-require('ng-file-upload');
+require('ngFileUpload');
 require('angular-resource');
 require('angular-cookies');
 require('angular-ui-router');
@@ -14,20 +11,15 @@ require('restangular');
 require('lodash');
 require('angular-ui-tree');
 require('angular-bootstrap');
-require('textAngularSanitize');
+require('ngSanitize');
 require('textAngular');
-require('angular-formly');
 require('angular-loading-bar');
 require('json-formatter');
 
-//var app = angular.module('kontApp', ['ui.router']);
-
 var app = angular.module('kontApp', ['ng', 'ui.router', 'ngResource', 'ngCookies',
   'ui.bootstrap', 'ui.tree',
-  'restangular','textAngular', 'formly',
-  'angularFileUpload', 'angular-loading-bar', 'jsonFormatter']);
-
-// app.constant('VERSION', require('../../package.json').version);
+  'restangular','textAngular',
+  'ngFileUpload', 'angular-loading-bar', 'jsonFormatter']);
 
 require('./filters');
 require('./directives');

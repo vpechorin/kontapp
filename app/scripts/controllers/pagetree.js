@@ -76,7 +76,8 @@ module.exports = function ($scope, $state, $stateParams, Restangular) {
       title: 'New page.' + ($scope.data.length + 1),
       name: 'newpage' + ($scope.data.length + 1),
       publicPage: false,
-      placeholder: false
+      placeholder: false,
+      sortIndex: 1000
     };
     Restangular.all('pages').customPOST(newPage).then(function () {
       //console.log("Success - page created");

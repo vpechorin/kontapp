@@ -89,25 +89,6 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <label class="col-xs-2 col-sm-2 control-label" for="includeForm">
-                            Include data form
-                        </label>
-                        <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
-                            <input type="checkbox" ng-model="page.includeForm" name="includeForm">
-                        </div>
-
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col-xs-2 col-sm-2 control-label" for="formName">Select data form</label>
-
-                        <div class="col-xs-10 col-sm-6 col-md-4 col-lg-3">
-                            <select class="form-control input-sm" ng-disabled="!page.includeForm" ng-model="page.formId" ng-options="f.id as f.name for f in dataforms"></select>
-                        </div>
-
-                    </div>
-
                 </form>
 
                 <div class="panel panel-info">
@@ -118,7 +99,12 @@
                             </div>
                             <div class="col-xs-6">
                                 <div class="pull-right">
-                                    <div class="col-xs-6"><input class="btn btn-default" type="file" ng-file-select="onEmbedImageSelect($files)" multiple></div>
+                                    <div class="col-xs-6"><button class="btn btn-default"
+                                                                 ngf-select="onEmbedImageSelect($files, $invalidFiles)"
+                                                                  accept="image/*"
+                                                                  ngf-max-size="100MB"
+                                                                  type="file"
+                                                                  ng-file-select="onEmbedImageSelect($files)" multiple>Select images</button></div>
                                 </div>
                             </div>
                         </div>
@@ -185,7 +171,14 @@
                     <div class="panel-heading">Upload images</div>
                     <div class="panel-body">
                         <div class=row>
-                            <div class="col-xs-6"><input class="btn btn-default" type="file" ng-file-select="onImageSelect($files)" multiple></div>
+                            <div class="col-xs-6">
+                                <button class="btn btn-default"
+                                        ngf-select="onImageSelect($files, $invalidFiles)"
+                                        ngf-max-size="100MB"
+                                        ngf-pattern="'image/*'"
+                                        ngf-accept="'image/*'"
+                                        multiple>Select images</button>
+                            </div>
                             <div class="col-xs-6"><button type="button" ng-click="loadImages()" class="btn btn-primary btn-sm pull-right"> <span class="glyphicon glyphicon-refresh"></span> RELOAD IMAGES </button></div>
                         </div>
                     </div>
@@ -221,14 +214,13 @@
                 </div>
             </tab>
 
-            <tab heading="Files  ({{docfiles.length}})">
+            <tab heading="Files ({{docfiles.length}})">
 
                 <div class="panel panel-info">
                     <div class="panel-heading">Upload files</div>
                     <div class="panel-body">
                         <div>
-                            <input class="btn btn-default" type="file" ng-file-select="onFileSelect($files)"
-                                   multiple>
+                            <input class="btn btn-default" type="file" ngf-select="onFileSelect($files, $invalidFiles)" multiple>
                         </div>
                     </div>
                 </div>
